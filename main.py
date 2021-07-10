@@ -11,6 +11,8 @@ bot = commands.Bot(prefix)
 
 max_rooms = 2
 
+bot.remove_command('help')
+
 @bot.event
 async def on_guild_join(guild):
     bot_entry = await guild.audit_logs(action=discord.AuditLogAction.bot_add).flatten()
