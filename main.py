@@ -244,4 +244,16 @@ async def commands(ctx):
     embed.add_field(name="cl!blacklist (on/off) (Room Name) (Password) (@user)", value="-Sets blacklist status for a user", inline=False)
     embed.set_footer(text="Keep in mind a channel can only have 1 room linked to it and you can only create up to 2 rooms.")
     await ctx.send(embed=embed)
+
+@bot.command()
+@has_permissions(manage_guild=True)
+async def help(ctx):
+    embed = discord.Embed(title="Commands:", color=0x738f96)
+    embed.add_field(name="cl!link (Room Name) (Password)", value="-Links the current channel to a room", inline=False)
+    embed.add_field(name="cl!unlink (Room Name)", value="-Unlinks a room from the current channel", inline=False)
+    embed.add_field(name="cl!create (Room Name) (Password)", value="-Creates a room", inline=False)
+    embed.add_field(name="cl!delete (Room Name) (Password)", value="-Deletes a room", inline=False)
+    embed.add_field(name="cl!blacklist (on/off) (Room Name) (Password) (@user)", value="-Sets blacklist status for a user", inline=False)
+    embed.set_footer(text="Keep in mind a channel can only have 1 room linked to it and you can only create up to 2 rooms.")
+    await ctx.send(embed=embed)
 bot.run(t.token)
