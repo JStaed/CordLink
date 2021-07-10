@@ -70,6 +70,7 @@ async def link(ctx, room_name, password):
                     except:
                         channels.update({str(ctx.guild.id):{ctx.channel.name:[room_name]}})
                     json.dump(channels, f, indent=4)
+                    await ctx.channel.send('Successfully linked **' + room_name + '**')
                     with open('rooms.json', 'r') as rrf:
                         rooms = json.load(rrf)
                     with open('rooms.json', 'w') as rrf:
@@ -95,6 +96,7 @@ async def unlink(ctx, room_name):
     with open('channels.json', 'w') as f:
         try:
             del channels[str(ctx.guild.id)][ctx.channel.name]
+            await ctx.channel.send('Successfully unlinked **' + room_name + '**')
         except:
             await ctx.channel.send('You are not in **' + room_name + '**')
             json.dump(channels, f, indent=4)
@@ -158,6 +160,7 @@ async def create(ctx, room_name, password):
     with open('blacklist.json', 'w') as f:
         bl.update({room_name:["861496737491189780"]})
         json.dump(bl, f, indent=4)
+    await ctx.channel.send('Successfully created **' + room_name + '**')
 
 @bot.command()
 @has_permissions(manage_guild=True)
@@ -196,6 +199,7 @@ async def delete(ctx, room_name, password):
         for c in ret:
             del channels[c[0]][c[1]]
         json.dump(channels, f, indent=4)
+    await ctx.channel.send('Successfully deleted **' + room_name + '**')
 
 @bot.command()
 @has_permissions(manage_guild=True)
